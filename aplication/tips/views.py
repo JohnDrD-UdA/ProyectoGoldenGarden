@@ -1,71 +1,68 @@
-from django.shortcuts import render
-
+from django.shortcuts import redirect,render
 from .models import Tip
-#from .forms import PosterForm
+from .forms import TipForm
+#from .forms import TipForm
 # Create your views here.
 
 def tips(request):
-    return render(request,'tips.html')
-
-def inicio(request):
     tip = Tip.objects.all()
     contexto = {
         'tip' : tip
     }
     return render(request,'tips.html',contexto)
 
-def mostrarPost(request,id):
+def mostrarTip(request,id):
     tip = Tip.objects.get(id = id)
     contexto = {
         'tip' : tip
     }
-    return render(request,'post/tips.html', contexto)
+    return render(request,'tips/publication.html', contexto)
 
-def crearPost(request):
+def crearTip(request):
     if request.method == 'GET':
-        form = PosterForm()
+        form = TipForm()
         contexto = {
             'form' : form,
             'get' : True
         }
     else:
-        form = PosterForm(request.POST, request.FILES)
+        form = TipForm(request.POST, request.FILES)
         if form.is_valid():
             form2 = form.save(commit=False)
             form2.usuario = request.user
             form2.save()
-            return redirect('index')
+            return redirect('tips')
         contexto = {
             'form' : form,
             'get' : False
         }
-    return render(request,'post/create.html', contexto)
+    return render(request,'tips/create.html', contexto)
 
-def editarPost(request,id):
-    post = Poster.objects.get(id = id)
+def editarTip(request,id):
+    tip = Tip.objects.get(id = id)
     if request.method == 'GET':
-        form = PosterForm(instance = post)
+        form = TipForm(instance = tip)
         contexto = {
             'form' : form
         }
     else:
-        form = PosterForm(request.POST, request.FILES, instance = post)
+        form = TipForm(request.POST, request.FILES, instance = tip)
         contexto = {
             'form' : form
         }
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('tips')
     return render(request,'post/edit.html', contexto)
 
 def verify(request,id):
-    post = Poster.objects.get(id = id)
+    tip = Tip.objects.get(id = id)
     contexto = {
-        'post' : post
+        'tip' : tip
     }
     return render(request, 'post/verify.html', contexto)
 
-def eliminarPost(request,id):
-    post = Poster.objects.get(id = id)
-    post.delete()
-    return redirect('index')
+def eliminarTip(request,id):
+    tip = Tip.objects.get(id = id)
+    tip.delete()
+    return redirect('tips')
