@@ -9,8 +9,6 @@ from .forms import PosterForm
 def about(request):
     return render(request,'about.html')
 
-def tips(request):
-    return render(request,'tips.html')
 
 def indexController(request):
     poster = getAllActivePosters()

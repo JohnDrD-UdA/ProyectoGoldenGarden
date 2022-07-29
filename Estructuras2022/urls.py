@@ -17,12 +17,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
 from django.conf.urls.static import static
-<<<<<<< HEAD
-from aplication.principal.views import about, indexController, createPostController, editPostController, verifyController, deletePostController, tips, showPostController
-=======
-from aplication.principal.views import about, inicio, crearPost, editarPost, verify, eliminarPost, mostrarPost
+from aplication.principal.views import about, indexController, createPostController, editPostController, verifyController, deletePostController, showPostController
 from aplication.tips.views import crearTip, mostrarTip,tips
->>>>>>> b1b63bc (Aporte sprint2)
 
 
 urlpatterns = [
