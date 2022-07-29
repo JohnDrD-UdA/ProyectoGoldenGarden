@@ -9,4 +9,5 @@ class PosterForm(forms.ModelForm):
             'titulo' : forms.TextInput(attrs={'class': 'form-control', 'placeholder' : 'Titulo'}),
             'precio' : forms.TextInput(attrs={'class': 'form-control', 'placeholder' : 'Precio'}),
             'etiqueta' : forms.TextInput(attrs={'class': 'form-control', 'placeholder' : 'Etiqueta'}),
-        }
+        } 
+        

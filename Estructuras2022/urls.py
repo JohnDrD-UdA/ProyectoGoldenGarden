@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
 from django.conf.urls.static import static
-from aplication.principal.views import about, indexController, createPostController, editPostController, verifyController, deletePostController, tips, showPostController
+from aplication.principal.views import about, indexController, createPostController, editPostController, verifyController, deletePostController, showPostController
+from aplication.tips.views import crearTip, mostrarTip,tips
 
 
 urlpatterns = [
@@ -31,5 +32,8 @@ urlpatterns = [
     path('eliminar_post/<int:id>', deletePostController, name = 'delete_post'),
     path('accounts/', include('allauth.urls')),
     path('tips/', tips, name = 'tips'),
+    path('crear_tip/', crearTip, name = 'create_tips'),
+    path('leer/<int:id>', mostrarTip, name = 'publication_tips'),
+    
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
