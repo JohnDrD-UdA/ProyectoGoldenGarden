@@ -85,3 +85,11 @@ def verifyController(request,id):
 def deletePostController(request,id):
     deletePost(id)
     return redirect('index')
+
+def myPostsController(request,id):
+    poster = getPostByUser(id)
+    contexto = {
+        'poster' : poster
+    }
+    return render(request,'post/list.html',contexto)
+

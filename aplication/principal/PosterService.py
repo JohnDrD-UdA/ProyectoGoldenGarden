@@ -23,4 +23,13 @@ def editPoster(form):
 def deletePost(id):
     post = Poster.objects.get(id = id) 
     post.delete()
+
+def getPostByUser(id):
+    posters = Poster.objects.all()
+    posters_by_user = list()
+    for post in posters:
+        if id == post.usuario_id:
+            posters_by_user.append(post)
+    return posters_by_user
+
     

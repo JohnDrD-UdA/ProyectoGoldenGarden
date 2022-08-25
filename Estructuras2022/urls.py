@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
 from django.conf.urls.static import static
-from aplication.principal.views import about, indexController, createPostController, editPostController, verifyController, deletePostController, showPostController
+from aplication.principal.views import about, indexController, createPostController, editPostController, verifyController, deletePostController, showPostController, myPostsController
 from aplication.tips.views import crearTip, mostrarTip,tips
 
 
@@ -34,6 +34,7 @@ urlpatterns = [
     path('tips/', tips, name = 'tips'),
     path('crear_tip/', crearTip, name = 'create_tips'),
     path('leer/<int:id>', mostrarTip, name = 'publication_tips'),
+    path('mis_publicaciones/<int:id>', myPostsController, name = 'my_posts'),
     
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
